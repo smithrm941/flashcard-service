@@ -13,8 +13,13 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-app.get('/', function (req, res) {
-    res.send("here is where the json goes");
+app.get('/:front/:back', function (req, res) {
+    const front = req.params.front;
+    const back = req.params.back;
+    const flashcard = {}
+    flashcard["front"] = front;
+    flashcard["back"] = back;
+    res.send(flashcard)
 });
 
 app.listen(PORT, () => console.log(`Web App running at http://${localhost}:${PORT}/ Press Ctrl-C to terminate`));
