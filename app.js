@@ -14,11 +14,14 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.get('/:front/:back', function (req, res) {
-    const front = req.params.front;
-    const back = req.params.back;
+    // whatever is typed in URI as "front" or "back" is encoded so spaces
+    // and punctuation can be used
+    const front = encodeURI(req.params.front);
+    const back = encodeURI(req.params.back);
     const flashcard = {}
-    flashcard["front"] = front;
-    flashcard["back"] = back;
+    // "front" and "back" are decoded for returned object
+    flashcard["front"] = decodeURI(front);
+    flashcard["back"] = decodeURI(back);
     res.send(flashcard)
 });
 
