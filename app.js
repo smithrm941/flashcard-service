@@ -1,10 +1,12 @@
 const express = require('express');
 const path = require('path');
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const localhost = "127.0.0.1";
 const bodyParser = require('body-parser');
+const cors = require('cors')
 
-var app = express();
+const app = express();
+app.use(cors())
 app.use(express.static('public'));
 app.use('/', express.static(path.join(__dirname, '/public')));
 
